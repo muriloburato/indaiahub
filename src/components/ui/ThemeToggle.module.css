@@ -1,0 +1,27 @@
+.btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1.5px solid var(--border);
+  background: var(--bg-alt);
+  cursor: pointer;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  flex-shrink: 0;
+  color: var(--text-2);
+}
+.btn:hover {
+  border-color: var(--brand-core);
+  background: var(--brand-frost);
+}
+[data-theme='dark'] .btn {
+  border-color: #334155;
+  background: #1E293B;
+}
+[data-theme='dark'] .btn:hover {
+  border-color: var(--brand-sky);
+  background: #1A2E4A;
+}

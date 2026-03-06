@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Next.js
+.next/
+out/
+
+# Production
+build/
+
+# Env
+.env
+.env*.local
+RESEND_API_KEY=re_Rm85zYa3_7TVkgPTCctgMZN4njUoWigL4
+
+# Misc
+.DS_Store
+*.pem
+Thumbs.db
+
+# Vercel
+.vercel
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts

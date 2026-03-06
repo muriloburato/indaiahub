@@ -1,0 +1,246 @@
+/* ═══════════════════════════════════════════════════
+   INDAIA PORTAL V9 — Global Styles
+═══════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap');
+
+/* ── Design Tokens ── */
+:root {
+  --brand-deep:   #0A1628;
+  --brand-navy:   #0D2244;
+  --brand-core:   #1565C0;
+  --brand-bright: #1976D2;
+  --brand-sky:    #42A5F5;
+  --brand-pale:   #BBDEFB;
+  --brand-frost:  #E3F2FD;
+
+  --bg:       #FFFFFF;
+  --bg-alt:   #F7F9FC;
+  --bg-card:  #FFFFFF;
+  --surface:  #EEF2F8;
+  --border:   #E2E8F0;
+  --text:     #0F172A;
+  --text-2:   #334155;
+  --text-3:   #64748B;
+  --input-bg: #FFFFFF;
+
+  --white:  #FFFFFF;
+  --off:    #F7F9FC;
+  --gray-1: #94A3B8;
+  --gray-2: #CBD5E1;
+  --gray-3: #E2E8F0;
+  --ink:    #0F172A;
+  --ink2:   #334155;
+
+  --green:  #10B981;
+  --yellow: #F59E0B;
+  --red:    #EF4444;
+
+  --r:   12px;
+  --rl:  20px;
+  --sh:  0 1px 4px rgba(15,23,42,0.06), 0 4px 16px rgba(15,23,42,0.08);
+  --shd: 0 8px 32px rgba(15,23,42,0.10);
+  --shx: 0 24px 64px rgba(15,23,42,0.14);
+
+  --topbar-h: 36px;
+  --nav-h:    88px;
+  --total-h:  124px;
+
+  /* ── Variável central de padding horizontal ──
+     Esta é a ÚNICA fonte de verdade para margens laterais.
+     Sobe de 16px (mobile) até 48px (tablet) e usa o espaço
+     restante acima de 1256px para centralizar o wrap. */
+  --page-px: clamp(16px, 4vw, 48px);
+}
+
+[data-theme="dark"] {
+  --bg:       #0F172A;
+  --bg-alt:   #1E293B;
+  --bg-card:  #1E293B;
+  --surface:  #263348;
+  --border:   #334155;
+  --text:     #F1F5F9;
+  --text-2:   #CBD5E1;
+  --text-3:   #64748B;
+  --input-bg: #263348;
+  --white:    #0F172A;
+  --off:      #1E293B;
+  --gray-1:   #64748B;
+  --gray-2:   #475569;
+  --gray-3:   #334155;
+  --ink:      #F1F5F9;
+  --ink2:     #CBD5E1;
+  --brand-frost: #1A2E4A;
+  --brand-pale:  #1E3A6E;
+  --sh:  0 2px 8px rgba(0,0,0,0.3);
+  --shd: 0 8px 32px rgba(0,0,0,0.4);
+  --shx: 0 24px 64px rgba(0,0,0,0.5);
+}
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  /* NUNCA usar overflow-x:hidden no body — esconde o problema sem resolver */
+  overflow-x: clip;
+  transition: background 0.3s, color 0.3s;
+}
+
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--bg-alt); }
+::-webkit-scrollbar-thumb { background: var(--brand-core); border-radius: 2px; }
+
+/* ── Typography ── */
+.mono { font-family: 'DM Mono', monospace; }
+
+.sec-eye {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--brand-core);
+  margin-bottom: 14px;
+}
+.sec-eye::before {
+  content: '';
+  display: block;
+  width: 18px;
+  height: 1.5px;
+  background: var(--brand-core);
+  flex-shrink: 0;
+}
+
+.sec-h {
+  font-size: clamp(22px, 2.8vw, 48px);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+.sec-h span { color: var(--brand-core); }
+
+.sec-p {
+  font-size: clamp(13.5px, 1.3vw, 15.5px);
+  color: var(--gray-1);
+  line-height: 1.8;
+  margin-top: 14px;
+  max-width: 520px;
+}
+
+/* ── Layout: abordagem definitiva ──
+   .sec  → padding lateral = --page-px em todos os tamanhos
+   .wrap → max-width de 1160px, centralizado, SEM padding próprio
+           (o pai .sec já garante o respiro)
+   
+   Assim em qualquer viewport entre 360px e 1600px+
+   o conteúdo NUNCA toca a borda. */
+.sec {
+  padding-top:    clamp(52px, 7vw, 88px);
+  padding-bottom: clamp(52px, 7vw, 88px);
+  padding-left:   var(--page-px);
+  padding-right:  var(--page-px);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.wrap {
+  max-width: 1160px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  /* sem padding aqui — o .sec já tem */
+}
+
+/* ── Buttons ── */
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 32px; border-radius: 10px;
+  background: var(--brand-core); border: none;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px; font-weight: 700; color: white;
+  cursor: pointer; text-decoration: none;
+  box-shadow: 0 6px 28px rgba(21,101,192,0.45);
+  transition: all 0.25s;
+}
+.btn-primary:hover {
+  background: var(--brand-bright); transform: translateY(-2px);
+  box-shadow: 0 10px 36px rgba(21,101,192,0.55);
+}
+
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 13px 28px; border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.15); background: transparent;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px; font-weight: 600; color: rgba(255,255,255,0.7);
+  cursor: pointer; text-decoration: none; transition: all 0.2s;
+}
+.btn-ghost:hover {
+  border-color: rgba(255,255,255,0.35); color: white;
+  background: rgba(255,255,255,0.04);
+}
+
+/* ── Forms ── */
+.fg { display: flex; flex-direction: column; gap: 6px; }
+.fg label {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-1);
+}
+.fg input, .fg select, .fg textarea {
+  border: 1.5px solid var(--border); border-radius: 10px;
+  padding: 11px 14px;
+  font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px;
+  color: var(--text); background: var(--input-bg);
+  outline: none; transition: border-color 0.2s; width: 100%;
+}
+.fg input:focus, .fg select:focus, .fg textarea:focus {
+  border-color: var(--brand-core);
+  box-shadow: 0 0 0 3px rgba(21,101,192,0.08);
+}
+.fg textarea { resize: vertical; min-height: 100px; }
+
+/* ── Animations ── */
+@keyframes fadeUp   { from { opacity:0; transform:translateY(20px) } to { opacity:1; transform:none } }
+@keyframes fadeLeft { from { opacity:0; transform:translateX(30px) } to { opacity:1; transform:none } }
+@keyframes blink    { 0%,100%{opacity:1} 50%{opacity:0.3} }
+@keyframes spin     { from { transform:rotate(0deg) } to { transform:rotate(360deg) } }
+@keyframes ringPulse {
+  0%,100% { box-shadow: 0 0 0 3px rgba(66,165,245,0.2) }
+  50%     { box-shadow: 0 0 0 6px rgba(66,165,245,0.06) }
+}
+@keyframes rflash { 0%{color:var(--brand-sky)} 100%{color:inherit} }
+.rflash { animation: rflash 0.9s ease; }
+
+/* ── Badges ── */
+.badge-green  { background: rgba(16,185,129,0.12); color: var(--green); }
+.badge-yellow { background: rgba(245,158,11,0.12);  color: var(--yellow); }
+.badge-blue   { background: rgba(66,165,245,0.12);  color: var(--brand-sky); }
+.badge-red    { background: rgba(239,68,68,0.12);   color: var(--red); }
+
+/* ── Reveal ── */
+.rv { opacity:0; transform:translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
+.rv.in { opacity:1; transform:none; }
+
+/* ── Section overrides ── */
+.sec-services, .sec-news { background: var(--bg); }
+.sec-tools, .sec-quote   { background: var(--bg-alt); }
+.sec-h { color: var(--text); }
+.sec-p { color: var(--text-3); }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .sec-p { max-width: 100%; }
+}
+@media (max-width: 480px) {
+  .sec-h { line-height: 1.2; }
+  .btn-primary, .btn-ghost {
+    width: 100%; justify-content: center;
+    padding: 14px 20px; font-size: 14px;
+  }
+}
